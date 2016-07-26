@@ -10,6 +10,11 @@
 
 @implementation Dependencies
 
+- (id)init {
+    _masterDictionary = [[NSMutableDictionary alloc] init];
+    return self;
+}
+
 - (void)addDirect:(NSString*)master withArray:(NSArray*)array {
     [_masterDictionary setObject:array forKey:master];
 }
