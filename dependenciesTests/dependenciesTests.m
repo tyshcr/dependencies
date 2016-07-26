@@ -37,15 +37,4 @@
     }];
 }
 
-- (void)testAddingToArray {
-    Dependencies *test = [[Dependencies alloc] init];
-    NSArray *sample = @[@"A",@"B",@"C"];
-    [test addDirect:@[@"A",@"B",@"C"]];
-    
-    NSLog(@"ARRAY %@", test.dependenciesArray);
-    
-    XCTAssert([test.dependenciesArray isEqualToArray:sample]);
-    
-}
-
 @end
