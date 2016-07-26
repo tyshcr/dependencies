@@ -12,7 +12,7 @@
 
 @property (nonatomic,strong) NSMutableDictionary *masterDictionary;
 
-- (void)addDirect:(NSString*)master withArray:(NSArray*)array;
-- (NSArray*)dependenciesFor:(NSString*)value;
+- (void)addDirect:(NSString*)parent withDependencies:(NSArray*)dependencies;
+- (NSArray*)dependenciesFor:(NSString*)parent;
 
 @end

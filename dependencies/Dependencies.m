@@ -15,20 +15,27 @@
     return self;
 }
 
-- (void)addDirect:(NSString*)master withArray:(NSArray*)array {
-    [_masterDictionary setObject:array forKey:master];
+- (void)addDirect:(NSString*)parent withDependencies:(NSArray*)dependencies {
+    [_masterDictionary setObject:dependencies forKey:parent];
 }
 
-- (NSArray*)dependenciesFor:(NSString*)value {
+- (NSArray*)dependenciesFor:(NSString*)parent {
+    NSMutableArray *visited = [[NSMutableArray alloc] initWithArray:@[parent]];
+    return [self dependenciesFor:parent visited:visited];
+}
+
+- (NSArray*)dependenciesFor:(NSString*)parent visited:(NSMutableArray*)visted {
     NSMutableArray *foundDependencies = [[NSMutableArray alloc] init];
     
-    for (id dependency in (NSArray*)[_masterDictionary objectForKey:value]) {
-        [foundDependencies addObject:dependency];
-        [foundDependencies addObjectsFromArray:[self dependenciesFor:dependency]];
+    for (id dependency in (NSArray*)[_masterDictionary objectForKey:parent]) {
+        if (![visted containsObject:dependency]) {
+            [visted addObject:dependency];
+            [foundDependencies addObject:dependency];
+            [foundDependencies addObjectsFromArray:[self dependenciesFor:dependency visited:visted]];
+        }
     }
     
     NSArray *cleaned = [[NSOrderedSet orderedSetWithArray:foundDependencies] array];
-    
     return [cleaned sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
 }
 
