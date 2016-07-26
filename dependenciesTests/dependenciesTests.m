@@ -37,4 +37,22 @@
     }];
 }
 
+- (void)testMasterDictionary {
+    Dependencies *dep = [[Dependencies alloc] init];
+    
+    NSArray *array1 = @[@"B",@"C",@"D"];
+    NSArray *array2 = @[@"E",@"F",@"G"];
+    
+    [dep addDirect:@"A" withArray:@[@"F",@"C",@"D"]];
+    [dep addDirect:@"B" withArray:@[@"E",@"F",@"G"]];
+    [dep addDirect:@"F" withArray:@[@"H",@"J",@"K"]];
+    
+    NSLog(@"FOUND %@", [dep dependenciesFor:@"A");
+    
+    XCTAssertTrue([[dep dependenciesFor:@"A"] isEqualToArray:array1]);
+    //XCTAssertTrue([[dep dependenciesFor:@"B"] isEqualToArray:array2]);
+    
+}
+
+
 @end

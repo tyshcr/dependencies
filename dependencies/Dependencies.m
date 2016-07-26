@@ -20,7 +20,14 @@
 }
 
 - (NSArray*)dependenciesFor:(NSString*)value {
-    return [_masterDictionary objectForKey:value];
+    NSMutableArray *foundDependencies = [[NSMutableArray alloc] init];
+    
+    for (id dependency in (NSArray*)[_masterDictionary objectForKey:value]) {
+        [foundDependencies addObject:dependency];
+        [foundDependencies addObjectsFromArray:[self dependenciesFor:dependency]];
+    }
+    
+   return [foundDependencies sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
 }
 
 @end
