@@ -40,12 +40,12 @@
 - (void)testDependencies {
     Dependencies *dep = [[Dependencies alloc] init];
     
-    [dep addDirect:@"A" withArray:@[@"B",@"C"]];
-    [dep addDirect:@"B" withArray:@[@"C",@"E"]];
-    [dep addDirect:@"C" withArray:@[@"G"]];
-    [dep addDirect:@"D" withArray:@[@"A",@"F"]];
-    [dep addDirect:@"E" withArray:@[@"F"]];
-    [dep addDirect:@"F" withArray:@[@"H"]];
+    [dep addDirect:@"A" withDependencies:@[@"B",@"C"]];
+    [dep addDirect:@"B" withDependencies:@[@"C",@"E"]];
+    [dep addDirect:@"C" withDependencies:@[@"G"]];
+    [dep addDirect:@"D" withDependencies:@[@"A",@"F"]];
+    [dep addDirect:@"E" withDependencies:@[@"F"]];
+    [dep addDirect:@"F" withDependencies:@[@"H"]];
     
     NSArray *test1 = @[@"B",@"C",@"E",@"F",@"G",@"H"];
     NSArray *test2 = @[@"C",@"E",@"F",@"G",@"H"];
@@ -65,16 +65,16 @@
 - (void)testCircularity {
     Dependencies *dep = [[Dependencies alloc] init];
     
-    [dep addDirect:@"A" withArray:@[@"B"]];
-    [dep addDirect:@"B" withArray:@[@"C",@"D"]];
-    [dep addDirect:@"C" withArray:@[@"A"]];
-    [dep addDirect:@"D" withArray:@[@"E",@"F"]];
-    [dep addDirect:@"E" withArray:@[@"B"]];
-    [dep addDirect:@"F" withArray:@[@"G"]];
+    [dep addDirect:@"A" withDependencies:@[@"B"]];
+    [dep addDirect:@"B" withDependencies:@[@"C",@"D"]];
+    [dep addDirect:@"C" withDependencies:@[@"A"]];
+    [dep addDirect:@"D" withDependencies:@[@"E"]];
+    [dep addDirect:@"E" withDependencies:@[@"B",@"F"]];
+    [dep addDirect:@"F" withDependencies:@[@"G"]];
     
     NSLog(@"Circular %@", [dep dependenciesFor:@"A"]);
     
-    NSArray *test1 = @[@"B",@"C",@"E",@"F",@"G",@"H"];
+    NSArray *test1 = @[@"B",@"C",@"D",@"E",@"F",@"G"];
     
     XCTAssertTrue([[dep dependenciesFor:@"A"] isEqualToArray:test1]);
 }
