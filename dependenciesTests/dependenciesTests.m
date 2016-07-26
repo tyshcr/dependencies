@@ -72,8 +72,6 @@
     [dep addDirect:@"E" withDependencies:@[@"B",@"F"]];
     [dep addDirect:@"F" withDependencies:@[@"G"]];
     
-    NSLog(@"Circular %@", [dep dependenciesFor:@"A"]);
-    
     NSArray *test1 = @[@"B",@"C",@"D",@"E",@"F",@"G"];
     
     XCTAssertTrue([[dep dependenciesFor:@"A"] isEqualToArray:test1]);
