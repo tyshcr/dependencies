@@ -13,6 +13,6 @@
 @property (nonatomic,strong) NSMutableDictionary *masterDictionary;
 
 - (void)addDirect:(NSString*)master withArray:(NSArray*)array;
-- (void)dependenciesFor:(NSString*)value;
+- (NSArray*)dependenciesFor:(NSString*)value;
 
 @end

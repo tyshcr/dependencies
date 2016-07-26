@@ -19,8 +19,8 @@
     [_masterDictionary setObject:array forKey:master];
 }
 
-- (void)dependenciesFor:(NSString*)value {
-    
+- (NSArray*)dependenciesFor:(NSString*)value {
+    return [_masterDictionary objectForKey:value];
 }
 
 @end
