@@ -27,7 +27,9 @@
         [foundDependencies addObjectsFromArray:[self dependenciesFor:dependency]];
     }
     
-   return [foundDependencies sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    NSArray *cleaned = [[NSOrderedSet orderedSetWithArray:foundDependencies] array];
+    
+    return [cleaned sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
 }
 
 @end
