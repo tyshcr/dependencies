@@ -37,21 +37,29 @@
     }];
 }
 
-- (void)testMasterDictionary {
+- (void)testDependencies {
     Dependencies *dep = [[Dependencies alloc] init];
     
-    NSArray *array1 = @[@"B",@"C",@"D"];
-    NSArray *array2 = @[@"E",@"F",@"G"];
+    [dep addDirect:@"A" withArray:@[@"B",@"C"]];
+    [dep addDirect:@"B" withArray:@[@"C",@"E"]];
+    [dep addDirect:@"C" withArray:@[@"G"]];
+    [dep addDirect:@"D" withArray:@[@"A",@"F"]];
+    [dep addDirect:@"E" withArray:@[@"F"]];
+    [dep addDirect:@"F" withArray:@[@"H"]];
     
-    [dep addDirect:@"A" withArray:@[@"F",@"C",@"D"]];
-    [dep addDirect:@"B" withArray:@[@"E",@"F",@"G"]];
-    [dep addDirect:@"F" withArray:@[@"H",@"J",@"K"]];
+    NSArray *test1 = @[@"B",@"C",@"E",@"F",@"G",@"H"];
+    NSArray *test2 = @[@"C",@"E",@"F",@"G",@"H"];
+    NSArray *test3 = @[@"G"];
+    NSArray *test4 = @[@"A",@"B",@"C",@"E",@"F",@"G",@"H"];
+    NSArray *test5 = @[@"F",@"H"];
+    NSArray *test6 = @[@"H"];
     
-    NSLog(@"FOUND %@", [dep dependenciesFor:@"A");
-    
-    XCTAssertTrue([[dep dependenciesFor:@"A"] isEqualToArray:array1]);
-    //XCTAssertTrue([[dep dependenciesFor:@"B"] isEqualToArray:array2]);
-    
+    XCTAssertTrue([[dep dependenciesFor:@"A"] isEqualToArray:test1]);
+    XCTAssertTrue([[dep dependenciesFor:@"B"] isEqualToArray:test2]);
+    XCTAssertTrue([[dep dependenciesFor:@"C"] isEqualToArray:test3]);
+    XCTAssertTrue([[dep dependenciesFor:@"D"] isEqualToArray:test4]);
+    XCTAssertTrue([[dep dependenciesFor:@"E"] isEqualToArray:test5]);
+    XCTAssertTrue([[dep dependenciesFor:@"F"] isEqualToArray:test6]);
 }
 
 
