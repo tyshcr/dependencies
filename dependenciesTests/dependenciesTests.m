@@ -62,5 +62,22 @@
     XCTAssertTrue([[dep dependenciesFor:@"F"] isEqualToArray:test6]);
 }
 
+- (void)testCircularity {
+    Dependencies *dep = [[Dependencies alloc] init];
+    
+    [dep addDirect:@"A" withArray:@[@"B"]];
+    [dep addDirect:@"B" withArray:@[@"C",@"D"]];
+    [dep addDirect:@"C" withArray:@[@"A"]];
+    [dep addDirect:@"D" withArray:@[@"E",@"F"]];
+    [dep addDirect:@"E" withArray:@[@"B"]];
+    [dep addDirect:@"F" withArray:@[@"G"]];
+    
+    NSLog(@"Circular %@", [dep dependenciesFor:@"A"]);
+    
+    NSArray *test1 = @[@"B",@"C",@"E",@"F",@"G",@"H"];
+    
+    XCTAssertTrue([[dep dependenciesFor:@"A"] isEqualToArray:test1]);
+}
+
 
 @end
