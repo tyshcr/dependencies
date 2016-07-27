@@ -321,6 +321,7 @@
 				9D19D2921D476EF6002EFC8F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9DD5E5A21D476C510065A4B5 /* Build configuration list for PBXProject "dependencies" */ = {
 			isa = XCConfigurationList;
