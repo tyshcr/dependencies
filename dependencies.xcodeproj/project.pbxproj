@@ -31,7 +31,7 @@
 		9D19D28F1D476EF6002EFC8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9DD5E5A71D476C510065A4B5 /* dependencies */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = dependencies; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DD5E5AA1D476C510065A4B5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		9DD5E5B11D476CAA0065A4B5 /* dependencies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dependencies.h; sourceTree = "<group>"; };
+		9DD5E5B11D476CAA0065A4B5 /* dependenciesx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dependenciesx.h; sourceTree = "<group>"; };
 		9DD5E5B21D476CAA0065A4B5 /* Dependencies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dependencies.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -84,7 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				9DD5E5AA1D476C510065A4B5 /* main.m */,
-				9DD5E5B11D476CAA0065A4B5 /* dependencies.h */,
+				9DD5E5B11D476CAA0065A4B5 /* dependenciesx.h */,
 				9DD5E5B21D476CAA0065A4B5 /* Dependencies.m */,
 			);
 			path = dependencies;
